@@ -1,0 +1,4 @@
+# Project exclude paths
+/weather-master/common/target/
+/weather-master/gateway/target/
+/weather-master/target/

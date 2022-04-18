@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: my-service
+  ##GATEWAY CONFIGURATIONS
+  cloud:
+    gateway:
+      routes:
+        ## SEARCH_SERVICE
+        - id: internet-banking-user-service
+          uri: lb://search_service
+          predicates:
+            - Path=/search/**
+          filters:
+            - StripPrefix=1
+        ## DEATILS_Service
+        - id: details_service
+          uri: lb://details
+          predicates:
+            - Path=/details/**
+          filters:
+            - StripPrefix=1
+server:
+  port: 8082
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka
